@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<meta name="theme-color" content="#fdf6ec" />
+<title>Elevate Women's Conference · Photo Booth</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍋%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=Cormorant:ital,wght@1,500;1,600&family=Dancing+Script:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body class="kiosk-portrait">
+
+<!-- Background layers -->
+<div class="bg" aria-hidden="true"></div>
+<div class="bg__image" aria-hidden="true"></div>
+<div class="bg__grad" aria-hidden="true"></div>
+<div class="bg__grain" aria-hidden="true"></div>
+
+<!-- Topbar -->
+<header class="topbar">
+  <a class="topbar__brand" href="#booth" data-tab-link="booth">
+    <span class="topbar__mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="20" height="20">
+        <path d="M6 22 L13 10 L16 14 L19 10 L26 22" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M14.2 13.2 C14.2 11.8, 15 11, 16 11 C17 11, 17.8 11.8, 17.8 13.2 C17.8 15, 16 16.4, 16 16.4 C16 16.4, 14.2 15, 14.2 13.2 Z" fill="currentColor"/>
+      </svg>
+    </span>
+    <span class="topbar__brand-text">
+      <span class="topbar__brand-line1">ELEVATE</span>
+      <span class="topbar__brand-line2">WOMEN'S CONF · 2026</span>
+    </span>
+  </a>
+  <div class="topbar__live" id="liveBadge">
+    <span class="topbar__live-dot"></span>
+    <span class="topbar__live-text">
+      <span class="topbar__live-line1" id="liveLine1">DESIGNED FOR MORE</span>
+      <span class="topbar__live-line2" id="liveLine2">Live now</span>
+    </span>
+  </div>
+</header>
+
+<!-- Tabs -->
+<nav class="tabs" id="tabs">
+  <button class="tab is-active" data-tab="booth">📸 Photo Booth</button>
+  <button class="tab" data-tab="conference">📅 The Conference</button>
+  <button class="tab" data-tab="speakers">🌟 Speakers</button>
+  <button class="tab" data-tab="discover">🍋 Discover Capri</button>
+</nav>
+
+<!-- Panels -->
+<main class="panels" id="panels">
+
+  <!-- ============== PHOTO BOOTH ============== -->
+  <section class="panel is-active" data-panel="booth">
+    <p class="eyebrow">ELEVATE AI · CAPRI 2026</p>
+    <h1 class="h1">AI Photo Booth</h1>
+    <p class="lede">Snap a portrait. We'll restyle you cruising through Capri in a vintage convertible — and text the souvenir to your phone.</p>
+
+    <div class="booth__cam-wrap" id="camWrap">
+      <video id="cam" playsinline muted autoplay></video>
+      <img id="snap" alt="Captured photo" />
+      <canvas id="cap" hidden></canvas>
+
+      <div class="booth__hud">
+        <span class="booth__hud-rec"><span class="booth__hud-dot"></span>LIVE · HD</span>
+        <span class="booth__hud-tag">CAPRI · ITALY</span>
+      </div>
+      <div class="booth__corners" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="booth__countdown" id="countdown" hidden></div>
+      <div class="booth__flash" id="flash"></div>
+    </div>
+
+    <div class="booth__pill" id="phonePill" hidden>📱 <span id="phonePillText"></span></div>
+
+    <div class="booth__row">
+      <button class="btn btn--ghost" id="btnStart">START CAMERA</button>
+      <button class="btn btn--ghost" id="btnSwitch">SWITCH</button>
+    </div>
+    <button class="btn btn--primary btn--block" id="btnTake">📸 Take Photo</button>
+
+    <div class="booth__row" id="afterCaptureRow" hidden>
+      <button class="btn btn--ghost" id="btnRetake">↺ Retake</button>
+      <button class="btn btn--accent" id="btnGenerate">✨ Generate Caricature</button>
+    </div>
+
+    <div class="booth__loading" id="loading" hidden>
+      <div class="booth__loading-art" aria-hidden="true">
+        <span class="lemon-1">🍋</span>
+        <span class="lemon-2">🍋</span>
+        <span class="lemon-3">🍋</span>
+      </div>
+      <div class="booth__loading-overlay">
+        <div class="booth__spinner"></div>
+        <p class="booth__loading-title" id="loadingTitle">Painting your Capri scene…</p>
+        <p class="booth__loading-sub">When life gives you lemons, we paint you a postcard. About 45 seconds.</p>
+      </div>
+    </div>
+
+    <div class="booth__result" id="result" hidden>
+      <img id="resultImg" alt="Your Capri caricature" />
+      <div class="booth__result-actions">
+        <button class="btn btn--ghost btn--block" id="btnDownload">⬇ Download to phone</button>
+        <button class="btn btn--primary btn--block" id="btnSms">📩 Text it to me</button>
+      </div>
+      <p class="booth__status" id="status"></p>
+      <button class="btn btn--ghost btn--block btn--small" id="btnNewGuest">↺ New guest</button>
+    </div>
+
+    <p class="booth__err" id="err" hidden></p>
+
+    <section class="booth__how">
+      <h3 class="how__title">HOW IT WORKS</h3>
+      <ol class="how__list">
+        <li><strong>Tap Take Photo</strong> and share your name + phone.</li>
+        <li><strong>5-second countdown</strong> · we capture your portrait.</li>
+        <li><strong>Tap Generate</strong> · AI paints you driving through Capri.</li>
+        <li><strong>Download or text</strong> the souvenir to keep forever.</li>
+      </ol>
+    </section>
+  </section>
+
+  <!-- ============== THE CONFERENCE ============== -->
+  <section class="panel" data-panel="conference">
+    <p class="eyebrow">3 DAYS · ONE MOVEMENT</p>
+    <h1 class="h1">The Conference</h1>
+    <p class="lede">A weekend curated to elevate, connect, and inspire — from the opening welcome to the lemon-grove afterparty.</p>
+
+    <div class="nights" id="conferenceList"></div>
+  </section>
+
+  <!-- ============== SPEAKERS ============== -->
+  <section class="panel" data-panel="speakers">
+    <p class="eyebrow">VOICES THAT ELEVATE</p>
+    <h1 class="h1">Featured Speakers</h1>
+    <p class="lede">Founders, creatives, and changemakers sharing the stories behind their "designed for more" moments.</p>
+
+    <div class="speakers" id="speakersList"></div>
+  </section>
+
+  <!-- ============== DISCOVER ============== -->
+  <section class="panel" data-panel="discover">
+    <p class="eyebrow">WHEN LIFE GIVES YOU LEMONS</p>
+    <h1 class="h1">Discover Capri</h1>
+    <p class="lede">Curated guides to the coastal town that inspired our 2026 theme.</p>
+
+    <div class="discover-grid" id="discoverList"></div>
+  </section>
+
+</main>
+
+<footer class="footer">© ELEVATE WOMEN'S CONFERENCE 2026 · CONNECT · REFLECT · MANIFEST</footer>
+
+<!-- ============== GUEST INFO MODAL ============== -->
+<div class="modal" id="guestModal" hidden>
+  <div class="modal__panel" role="dialog" aria-modal="true">
+    <h2 class="modal__title">Your Details</h2>
+    <p class="modal__sub">We'll text your Capri souvenir to your phone — and only use this for the keepsake.</p>
+
+    <label class="modal__label" for="firstName">First Name</label>
+    <input id="firstName" class="modal__input" type="text" autocomplete="given-name" placeholder="Maya" />
+
+    <label class="modal__label" for="lastName">Last Name</label>
+    <input id="lastName" class="modal__input" type="text" autocomplete="family-name" placeholder="Romano" />
+
+    <label class="modal__label" for="phone">Phone Number</label>
+    <input id="phone" class="modal__input" type="tel" inputmode="tel" autocomplete="tel" placeholder="(555) 123-4567" />
+
+    <p class="modal__err" id="modalErr" hidden></p>
+
+    <div class="modal__row">
+      <button class="btn btn--ghost" id="btnCancel">Cancel</button>
+      <button class="btn btn--primary" id="btnContinue">Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============== ROTATE OVERLAY ============== -->
+<div class="rotate-warn" id="rotateWarn">
+  <div class="rotate-warn__inner">
+    <div class="rotate-warn__icon">↻</div>
+    <p class="rotate-warn__text">ROTATE TO PORTRAIT</p>
+    <p class="rotate-warn__sub">This experience is portrait-only.</p>
+  </div>
+</div>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>
