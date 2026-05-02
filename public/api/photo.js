@@ -22,13 +22,37 @@ const CARICATURE_PROMPT = `Transform this photo into a stylized illustrated cari
 in a warm, vibrant painterly aesthetic — NOT photorealistic. The output is a souvenir
 portrait for the Elevate Women's Conference 2026 in Capri, Italy.
 
-SCENE: Place this person as the SOLE DRIVER (behind the steering wheel) of a light blue
-vintage convertible — a 1960s-era Italian roadster, robin's-egg blue, chrome trim, top
-down — cruising along a coastal road in Capri, Italy. Preserve the person's actual face,
-hair, skin tone, and identity faithfully — just stylize them as a charming caricature
-with slightly exaggerated, friendly features. They should look joyful, hands on the
-wheel, hair gently moving in the wind, wearing chic Italian summer attire (sundress or
-linen shirt, oversized sunglasses, maybe a light scarf).
+WHO IS IN THE SCENE: Use EVERY person visible in the source photo — if there is one
+person, render one; if there are two, three, or four, render all of them together in
+the same convertible. Do NOT add, omit, or duplicate people. Preserve each person's
+actual face, hair, skin tone, ethnicity, and identity faithfully — just stylize them
+as charming caricatures with slightly exaggerated, friendly features. Everyone should
+look joyful, smiling, having a great time together.
+
+SEATING (match person count):
+- 1 person: sole driver behind the wheel.
+- 2 people: driver + front passenger, shoulder to shoulder.
+- 3 people: driver + front passenger + one in the small rear bench (or leaning forward
+  between the front seats).
+- 4 people: driver + front passenger + two squeezed into the rear bench.
+Leave any extra seats empty rather than inventing new passengers.
+
+VEHICLE: A 1960s-era Italian roadster convertible — robin's-egg / light sky blue body,
+chrome trim, top down, classic round headlights. The car is shown in 3/4 front-left
+view so we see the front grille, the driver's side, and the windshield.
+
+CRITICAL ORIENTATION RULE — ALL ALIGNED TO THE CAMERA:
+- The car is angled toward the viewer (3/4 front view, NOT a side profile).
+- Every person's TORSO faces forward toward the camera/viewer (chest pointed at us).
+- Every person's HEAD faces forward toward the camera/viewer (looking at us, smiling).
+- Heads, shoulders, and the car's front-end all point in the SAME direction — toward
+  the viewer. No one is shown in side profile. No one is looking sideways or at
+  another passenger. The driver's hands are on the wheel but their face and chest are
+  turned toward the camera.
+
+WARDROBE: Chic Italian summer attire — sundresses, linen shirts, oversized sunglasses,
+light silk scarves, gold hoop earrings. Hair gently lifted by the breeze. Vary outfits
+so each person looks distinct.
 
 BACKGROUND: The Mediterranean Sea sparkling turquoise on one side, dramatic Capri
 cliffside architecture and pastel villas climbing the rocks on the other. Warm
@@ -43,8 +67,8 @@ STYLE: Illustrated caricature / watercolor-painterly, hand-drawn feel, warm and
 vibrant, like a high-end travel magazine illustration. Soft brushwork, visible
 painterly texture. Joyful, celebratory, feminine, sophisticated.
 
-Important: The person must remain clearly recognizable. Do not change their ethnicity,
-fundamental face shape, or eye/hair color. Keep their face the focal point of the
+Important: Every person must remain clearly recognizable — do not change ethnicity,
+fundamental face shape, or eye/hair color. Keep faces the focal point of the
 composition. No text, no watermark, no logos in the image — those will be added later
 in the frame.`;
 
